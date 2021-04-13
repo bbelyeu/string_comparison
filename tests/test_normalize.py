@@ -5,17 +5,22 @@ import string_comparison
 
 def test_normalize():
     """Test the align method."""
-    aligned = string_comparison.normalize("OH YEAH")
-    assert aligned == "oh yeah"
+    norm = string_comparison.normalize("OH YEAH")
+    assert norm == "oh yeah"
 
-    aligned = string_comparison.normalize("credinţă")
-    assert aligned == "credinta"
+    norm = string_comparison.normalize("credinţă")
+    assert norm == "credinta"
 
-    aligned = string_comparison.normalize("Paști")
-    assert aligned == "pasti"
+    norm = string_comparison.normalize("Paști")
+    assert norm == "pasti"
 
-    aligned = string_comparison.normalize("פַּסחָא")
-    assert aligned == "פסחא"
+    norm = string_comparison.normalize("פַּסחָא")
+    assert norm == "פסחא"
 
-    aligned = string_comparison.normalize("\x00")  # null byte removal
-    assert aligned == ""
+    norm = string_comparison.normalize("\x00")  # null byte removal
+    assert norm == ""
+
+    norm = string_comparison.normalize(
+        "ww\xadw\xad.\xadg\xado\xado\xadd\xad\xad.\xad\xadc\xado\xadm\xad"
+    )
+    assert norm == "www.good.com"

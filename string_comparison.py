@@ -1303,13 +1303,7 @@ def normalize(str_):
     if not str_:
         return ""
 
-    try:
-        str_.encode("ascii")
-        # null byte is considered valid ascii so clean it out
-        str_ = str_.replace("\x00", "")
-
-    except UnicodeEncodeError:
-        translate_table = str_.maketrans(UNICODE)
-        str_ = str_.translate(translate_table)
-
-    return str_.strip().casefold()
+    translate_table = str_.maketrans(UNICODE)
+    from pudb import set_trace; set_trace()
+    pass
+    return str_.translate(translate_table).strip().casefold()
