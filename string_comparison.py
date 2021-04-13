@@ -1298,8 +1298,8 @@ UNICODE = {
 }
 
 
-def align(str_):
-    """Align string through possible permutations for comparison."""
+def normalize(str_):
+    """Normalize a string through possible permutations for comparison."""
     if not str_:
         return ""
 

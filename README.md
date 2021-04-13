@@ -1,4 +1,4 @@
-# dlite
+# String Comparison
 
 Text normalization for string comparison in Python.
 
@@ -10,10 +10,10 @@ This project requires Python 3.7+
 
 To install with pip
 
-    pip install dlite
+    pip install string_comparison
 
 ## Usage
 
-    import dlite
-    normalized = dlite.align("é")
+    import string_comparison
+    normalized = string_comparison.normalize("é")
     assert normalized == "e"
