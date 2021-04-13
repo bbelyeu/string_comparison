@@ -1,6 +1,6 @@
 """Dlite main module."""
 
-import mapping
+from . import mapping
 
 
 def align(str_):
