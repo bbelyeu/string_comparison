@@ -1304,6 +1304,4 @@ def normalize(str_):
         return ""
 
     translate_table = str_.maketrans(UNICODE)
-    from pudb import set_trace; set_trace()
-    pass
     return str_.translate(translate_table).strip().casefold()
