@@ -4,7 +4,11 @@ String comparison main module.
 This maps a Unicode code point key represented as an integer to a corresponding ASCII
 character mapping. In some cases such as Hebrew niqqud & cantillation, we remove the
 character altogether or replace certain punctuation with a space.
+
+In addition, some characters are removed prior to normalization. For example, Unicode control chars.
 """
+
+import unicodedata
 
 UNICODE = {
     0: "",
@@ -1298,10 +1302,25 @@ UNICODE = {
 }
 
 
-def normalize(str_):
-    """Normalize a string through possible permutations for comparison."""
-    if not str_:
+def normalize(string):
+    """
+    Normalize a string through possible permutations for comparison.
+
+    View https://www.unicode.org/reports/tr44/#GC_Values_Table for General Category values.
+    """
+    if not string:
         return ""
 
-    translate_table = str_.maketrans(UNICODE)
-    return str_.translate(translate_table).strip().casefold()
+    for char in string:
+        # Remove Unicode control characters.
+        # "C" is returned as the first char for all control chars.
+        if unicodedata.category(char)[0] == "C":
+            string = string.replace(char, "")
+
+        # Normalize space separators into a single normal space
+        if unicodedata.category(char) == "Zs":
+            string = string.replace(char, " ")
+
+    translate_table = string.maketrans(UNICODE)
+
+    return string.translate(translate_table).strip().casefold()

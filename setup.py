@@ -7,7 +7,7 @@ from setuptools import setup
 if sys.version_info < (3, 7):
     sys.exit("Sorry, Python < 3.7 is not supported")
 
-__version__ = "1.0.2"
+__version__ = "1.1.0"
 
 setup(
     name="string_comparison",

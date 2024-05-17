@@ -24,3 +24,6 @@ def test_normalize():
         "ww\xadw\xad.\xadg\xado\xado\xadd\xad\xad.\xad\xadc\xado\xadm\xad"
     )
     assert norm == "www.good.com"
+
+    norm = string_comparison.normalize("3 j")
+    assert norm == "3 j"
